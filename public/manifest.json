@@ -1,6 +1,6 @@
 {
-  "name": "React + Chrome Extension Boilerplate",
-  "description": "React based chrome extension boilerplate with live reload and Chrome Extensions Manifest Version 3!",
+  "name": "GH Admin",
+  "description": "Extension to manage the GH projects",
   "version": "0.1.0",
   "manifest_version": 3,
   "icons": {
@@ -34,6 +34,6 @@
       "matches": ["https://github.com/*"]
     }
   ],
-  "permissions": ["tabs", "scripting", "storage", "management"],
+  "permissions": ["tabs", "scripting", "storage", "management", "activeTab"],
   "host_permissions": ["https://github.com/*", "http://localhost:3000/*"]
 }
