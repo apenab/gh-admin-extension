@@ -1,0 +1,1 @@
+{"version":3,"file":"background.js","mappings":"AACAA,QAAQC,IAAI","sources":["webpack://gh-admin-extension/./src/background/background.ts"],"sourcesContent":["//@ts-ignore\nconsole.log(\"This is background script\");\n"],"names":["console","log"],"sourceRoot":""}
