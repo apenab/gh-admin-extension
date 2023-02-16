@@ -1,7 +1,7 @@
 {
   "name": "GH Admin",
   "description": "Chrome extension to manage GitHub project boards",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "manifest_version": 3,
   "icons": {
     "16": "./logo192.png",

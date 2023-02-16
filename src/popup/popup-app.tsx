@@ -18,18 +18,18 @@ export default function PopupApp() {
     }
   }, [showTable, refreshCount]);
 
-  async function handleGoAlertHubProject() {
-    let tab = await getCurrentTab();
-    if (tab) {
-      await chrome.scripting.executeScript({
-        target: { tabId: tab.id as number },
-        func: () => {
-          document.location.href =
-            "https://github.com/orgs/inditex/projects/45/views/26?layout=table";
-        },
-      });
-    }
-  }
+  // async function handleGoAlertHubProject() {
+  //   let tab = await getCurrentTab();
+  //   if (tab) {
+  //     await chrome.scripting.executeScript({
+  //       target: { tabId: tab.id as number },
+  //       func: () => {
+  //         document.location.href =
+  //           "https://github.com/orgs/inditex/projects/45/views/26?layout=table";
+  //       },
+  //     });
+  //   }
+  // }
 
   async function handleShowTable() {
     let tab = await getCurrentTab();
@@ -62,29 +62,40 @@ export default function PopupApp() {
   }
 
   return (
-    <div style={{ minWidth: "1500px", minHeight: "800px" }}>
+    <div style={{ minWidth: "600px", minHeight: "800px" }}>
       <div style={{ margin: "25px 0px" }}>
         <div
           style={{
             padding: 15,
             backgroundColor: "#bbdefb",
             borderRadius: 5,
-            fontSize: 25,
+            fontSize: 20,
+            marginBottom: 20,
+          }}
+        >
+          <b>ATTENTION!</b>
+          <br />
+          Remember that you must be in "Table Layout" for the extension to work
+          well
+        </div>
+
+        <div
+          style={{
+            padding: 15,
+            backgroundColor: "#bbdefb",
+            borderRadius: 5,
+            fontSize: 15,
             marginBottom: 20,
           }}
         >
           You need to follow below steps to copy the table
           <ol>
-            <li>Click on the button "Go to AlertHub Project"</li>
             <li>Click on the button "Show Table"</li>
             <li>Click on the button "Copy Table"</li>
           </ol>
         </div>
 
         <div>
-          <button onClick={handleGoAlertHubProject}>
-            Go to AlertHub Project
-          </button>
           <button style={{ marginLeft: 5 }} onClick={handleShowTable}>
             {showTable ? "Refresh Table" : "Show Table"}
           </button>
