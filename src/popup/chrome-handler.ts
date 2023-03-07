@@ -22,7 +22,7 @@ export async function extractHeaderAndRowValuesFromDOM(
             return headers;
           }
 
-          function extractRows(rowSelector = "div[data-test-id*='TableRow']") {
+          function extractRows(rowSelector = "div[data-testid*='TableRow']") {
             let rowNodeList = document.querySelectorAll(rowSelector);
             let rows: string[][] = [];
 
