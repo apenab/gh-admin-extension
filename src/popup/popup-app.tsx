@@ -3,6 +3,7 @@ import { getCurrentTab } from "../utils";
 import { extractHeaderAndRowValuesFromDOM } from "./chrome-handler";
 
 export default function PopupApp() {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [showTable, setShowTable] = React.useState(false);
   const [headers, setHeaders] = React.useState<string[]>([]);
   const [rows, setRows] = React.useState<string[][]>([]);
@@ -32,19 +33,23 @@ export default function PopupApp() {
   // }
 
   async function handleShowTable() {
+    setIsLoading(true);
     let tab = await getCurrentTab();
     if (tab) {
+      await chrome.tabs.setZoom(tab.id as number, 0.01);
       await chrome.scripting.executeScript(
         {
           target: { tabId: tab.id as number },
           func: () => {
-            //@ts-ignore
-            document.body.style.zoom = "20%";
+            document
+              .querySelector("div[data-testid='table-scroll-container']")
+              ?.scroll(0, 99999999);
           },
         },
         () => {
           setShowTable(true);
           setRefreshCount(refreshCount + 1);
+          setIsLoading(false);
         }
       );
     }
@@ -97,7 +102,11 @@ export default function PopupApp() {
 
         <div>
           <button style={{ marginLeft: 5 }} onClick={handleShowTable}>
-            {showTable ? "Refresh Table" : "Show Table"}
+            {isLoading
+              ? "Loading..."
+              : showTable
+              ? "Refresh Table"
+              : "Show Table"}
           </button>
           <button
             style={{
@@ -107,7 +116,7 @@ export default function PopupApp() {
             }}
             onClick={handleCopyTable}
           >
-            Copy Table
+            {isLoading ? "Loading..." : "Copy Table"}
           </button>
         </div>
       </div>
